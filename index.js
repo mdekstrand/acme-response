@@ -21,7 +21,7 @@ function loadAndMakeResponse(baseDir, acmeFile, callback) {
       callback(null, false);
     } else {
       async.waterfall([
-        (cb) => fs.readFile('foo', 'utf8', cb),
+        (cb) => fs.readFile(acmeFile, 'utf8', cb),
         (txt, cb) => {
           let acme = yaml.safeLoad(txt);
           makeAcmeResponse(baseDir, acme, cb);
