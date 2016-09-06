@@ -1,5 +1,6 @@
 "use strict";
-const fs = require('fs-extra');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
 const path = require('path');
 const async = require('async');
 
@@ -7,7 +8,7 @@ function makeAcmeResponse(baseDir, acme, callback) {
   var dir = path.join(baseDir, '.well-known', 'acme-challenge');
   var outfn = path.join(baseDir, '.well-known', 'acme-challenge', acme.challenge);
   async.series([
-    async.apply(fs.ensureDir, dir),
+    async.apply(mkdirp, dir),
     async.apply(fs.writeFile, outfn, acme.response + '\n')
   ], callback);
 }
