@@ -16,7 +16,7 @@ function makeAcmeResponse(baseDir, acme, callback) {
 function loadAndMakeResponse(baseDir, acmeFile, callback) {
   const yaml = require('js-yaml');
 
-  fs.access(acmeFile, fs.constants.R_OK, (err) => {
+  fs.access(acmeFile, fs.R_OK, (err) => {
     if (err) {
       callback(null, false);
     } else {
